@@ -38,5 +38,5 @@ then in the `dependencies` section of the your `package.json`, add one or more c
 ```javascript
 "dependencies": {
     "ibm-security-verify": "1.^"
-]
+}
 ```
