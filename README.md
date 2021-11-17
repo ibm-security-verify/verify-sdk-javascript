@@ -18,8 +18,7 @@ Releases of all packages are available here: [Releases](https://github.ibm.com/i
 The following components are currently offered in the package.
 | Component | Description |
 | ----------- | ----------- |
-| [Privacy](sdk/privacy) | Fast, opinionated, simple privacy component that leverages the data privacy & consent engine on IBM Security Verify. |
-| [Adaptive](sdk/adaptive) | The adaptive component provides device assessment.  Based on cloud risk policies, authentication and authorization challenages can be evaluated. |
+
 
 
 ### Installation
