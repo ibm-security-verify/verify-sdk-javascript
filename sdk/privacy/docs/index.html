@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Home - Documentation
+  </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  
+
+  
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li  class="active" >
+        <a href="index.html">
+          
+          
+            <svg fill="#0095dd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">
+      SDK Client Reference
+    </h3>
+
+    
+
+    <h3>Classes</h3><ul><li id="ConfigurationError-nav"><a href="ConfigurationError.html">ConfigurationError</a></li><li id="Privacy-nav"><a href="module-Privacy-Privacy.html">Privacy</a><ul class='methods'><li data-type="method" id="Privacy-assess-nav"><a href="module-Privacy-Privacy.html#assess">assess</a></li><li data-type="method" id="Privacy-getConsentMetadata-nav"><a href="module-Privacy-Privacy.html#getConsentMetadata">getConsentMetadata</a></li><li data-type="method" id="Privacy-getUserConsents-nav"><a href="module-Privacy-Privacy.html#getUserConsents">getUserConsents</a></li><li data-type="method" id="Privacy-storeConsents-nav"><a href="module-Privacy-Privacy.html#storeConsents">storeConsents</a></li></ul></li></ul><h3>Modules</h3><ul><li id="Privacy-nav"><a href="module-Privacy.html">Privacy</a></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+  </nav>
+
+  <div id="main">
+    
+
+    
+      
+
+
+
+    
+
+      
+
+
+  <section class="readme">
+    <article>
+      <h1>IBM Security Verify Privacy SDK for Javascript</h1>
+<p>Fast, opinionated, simple privacy SDK for <a href="https://nodejs.org">Node</a>
+that leverages the data privacy &amp; consent engine on IBM Security Verify.</p>
+<hr>
+<pre class="prettyprint source lang-js"><code>const Privacy = require('@ibm-security-verify/privacy');
+
+// tenant information and other global config
+const config = { tenantUrl: &quot;https://abc.verify.ibm.com&quot; };
+// access token generated using any OAuth client library
+const auth = { accessToken: getToken() };
+// optional context
+const context = { &quot;ipAddress&quot;: &quot;1.2.3.4&quot; };
+
+const privacy = new Privacy(config, auth, context);
+
+// determine items that need assessment
+let items = [
+    {
+        &quot;purposeId&quot;: &quot;marketing&quot;,
+        &quot;attributeId&quot;: &quot;mobile_number&quot;,
+        &quot;accessTypeId&quot;: &quot;default&quot;
+    }
+];
+
+doAssess = async (req, res) => {
+  // assess if the item can be used
+  let decision = await privacy.assess(items);
+  if (decision.status == &quot;consent&quot;) {
+    // metadata used to render a user consent page
+    let r = await privacy.getConsentMetadata(items);
+    res.render('consent', { metadata: r.metadata });
+  }
+  // handle other cases
+}
+
+storeConsents = async (req, res) => {
+  // assuming the request.body is a JSON array of 
+  // consent records that need to be stored
+  let r = await privacy.storeConsents(req.body);
+  if (r.status == &quot;success&quot;) {
+    // done. Respond accordingly
+  } else if (r.status == &quot;fail&quot;) {
+    // something didn't save. For example - an attempt was made to store a consent
+    // for an attribute that isn't linked to a purpose on Verify.
+    // Render an appropriate error code to the user.
+  }
+}
+
+</code></pre>
+<h2>Prerequisites</h2>
+<ul>
+<li>Sign up for your <a href="https://docs.verify.ibm.com/verify/docs/signing-up-for-a-free-trial">IBM Security Verify Tenant</a>.</li>
+<li>If you are not using an OAuth/OIDC application to get a user/delegated token, obtain a privileged access token by configuring an <a href="https://docs.verify.ibm.com/verify/docs/create-api-client">API client</a> with the following entitlements.
+<ul>
+<li>Check for data usage approval <em>to assess the usage of requested data items</em></li>
+<li>Retrieve privacy purposes and associated user's consent <em>to present a complete user consent experience</em></li>
+<li>Create privacy consent records <em>to record consents</em></li>
+<li>Read privacy consents <em>to get the user's consents</em></li>
+</ul>
+</li>
+<li>Identify attributes you intend to use in your application that require assessment</li>
+<li>Identify purpose-of-use for those attributes</li>
+</ul>
+<h2>Installation</h2>
+<p>Use <a href="https://github.com/npm/cli">npm</a> to install the SDK:</p>
+<pre class="prettyprint source lang-bash"><code>$ npm install @ibm-security-verify/privacy
+</code></pre>
+<h2>Features</h2>
+<ul>
+<li>Integrate with the Verify data privacy engine using APIs</li>
+<li>Insert privacy assessment and consent at any point in your application flow. Privacy &amp; compliance regulations are configured centrally on the Verify tenant</li>
+<li>Build pleasing experiences for user consent and preferences using the simplified object returned by the <code>getConsentMetadata</code> function</li>
+</ul>
+<h2>Documentation</h2>
+<ul>
+<li><a href="https://ibm-security-verify.github.io/javascript/privacy/docs/index.html">Library documentation</a></li>
+<li><a href="https://github.com/ibm-security-verify/verify-sdk-javascript/tree/master/sdk/privacy/examples">Usage examples</a></li>
+</ul>
+<h2>Tests</h2>
+<p>Before running the tests, the Verify tenant must be configured with the following:</p>
+<ul>
+<li>Purpose with ID <code>marketing</code></li>
+<li>Purpose <code>marketing</code> must be configured with two attributes - <code>mobile_number</code> and <code>email</code></li>
+<li>Purpose <code>marketing</code> must be configured with the <code>default</code> access type</li>
+</ul>
+<p>The test environment must be setup as below:</p>
+<ol>
+<li>In the directory where this Git repository is cloned, run:</li>
+</ol>
+<pre class="prettyprint source"><code>$ npm install
+</code></pre>
+<ol start="2">
+<li>Copy <code>./test/dotenv</code> to <code>./test/.env</code></li>
+<li>Use any OIDC application configured on the Verify tenant to generate an OAuth token. This would be associated with the user account used to login to the application.</li>
+</ol>
+<p>Now you can run the test by executing:</p>
+<pre class="prettyprint source lang-bash"><code>$ npm test
+</code></pre>
+<p>If you want to see debug logs, run:</p>
+<pre class="prettyprint source lang-js"><code>$ npm run testdebug
+</code></pre>
+    </article>
+  </section>
+
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>

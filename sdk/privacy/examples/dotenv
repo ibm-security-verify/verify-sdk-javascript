@@ -1,0 +1,7 @@
+TENANT_URL=https://abc.verify.ibm.com
+APP_CLIENT_ID=
+APP_CLIENT_SECRET=
+USERNAME=
+PASSWORD=
+CONSENT_ITEMS=marketing/email:default defaultEULA
+IP_ADDRESS=

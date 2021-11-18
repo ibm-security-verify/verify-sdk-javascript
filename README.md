@@ -4,36 +4,35 @@ This repository is for active development of the IBM Security Verify SDK for Jav
 
 ## Getting started
 
-For your convenience, each component is seperate for you to choose from instead of one large IBM Security Verify package.  To get started with a specific component, see the **README.md** file located in each of components project folder.
+To get started with a specific component, see the **README.md** file located in each of components project folder.
 
 ### Prerequisites
 
-- Typescript v4.3.5
-- To use the multi-factor component a valid IBM Security Verify tenant or IBM Security Verify Access is required.
+- [node](https://nodejs.org/en) (v16.13.0 or higher)
+- A valid IBM Security Verify tenant or IBM Security Verify Access is required.
 
 ### Components
 
-Releases of all packages are available here: [Releases](https://github.ibm.com/ibm-security-verify/verify-sdk-javascript/releases)
+Releases of all packages are available here: [Releases](https://github.com/ibm-security-verify/verify-sdk-javascript/tags)
 
 The following components are currently offered in the package.
 | Component | Description |
 | ----------- | ----------- |
-
-
+| [Privacy](sdk/privacy) | Fast, opinionated, simple privacy component that leverages the data privacy & consent engine on IBM Security Verify. |
 
 ### Installation
 
-[Node Package Manager](https://www.npmjs.com) is used for automating the distribution of components code:
+Install using [Node Package Manager](https://www.npmjs.com):
 
 ```javascript
-# npm - https://www.npmjs.com
-npm i ibm-security-verify
+# install the privacy sdk
+npm i @ibm-security-verify/privacy
 ```
 
-then in the `dependencies` section of the your `package.json`, add one or more components to your, for example:
+The above command will add the Privacy SDK to the `dependencies` section of the your `package.json`, as shown in the following example:
 
 ```javascript
 "dependencies": {
-    "ibm-security-verify": "1.^"
+    "@ibm-security-verify/privacy": "^1.0.0"
 }
 ```

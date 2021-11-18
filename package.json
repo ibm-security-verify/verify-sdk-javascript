@@ -1,0 +1,23 @@
+{
+  "name": "ibm-security-verify",
+  "description": "IBM Verify monorepo for JavaScript SDKs",
+  "author": "Raghuram Kokalla <raghuram@sg.ibm.com>",
+  "workspaces": [
+    "sdk/*"
+  ],
+  "engines": {
+    "node": ">=16.13.0",
+    "npm": ">=7.21.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibm-security-verify/verify-sdk-javascript.git"
+  },
+  "keywords": [
+    "IBM",
+    "Verify",
+    "SDK",
+    "Consent"
+  ],
+  "license": "MIT"
+}

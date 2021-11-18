@@ -1,0 +1,10 @@
+# folders
+node_modules/
+docs/
+test/
+examples/
+
+# files
+.travis.yml
+.jsdoc.json
+.eslintrc.json
