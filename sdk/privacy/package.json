@@ -1,0 +1,45 @@
+{
+  "name": "@ibm-security-verify/privacy",
+  "version": "1.0.0",
+  "description": "Data Privacy and Consent Management SDK",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "/lib"
+  ],
+  "scripts": {
+    "testdebug": "DEBUG=verify:* npx mocha test/service/*.js test/privacy/*.js --timeout 5000",
+    "test": "npx mocha test/service/*.js test/privacy/*.js --timeout 10000",
+    "testwithfiles": "npx mocha --timeout 5000",
+    "clean": "rm -r node_modules package-lock.json",
+    "docs": "rm -r docs 2>/dev/null; npx jsdoc -c ./.jsdoc.json --verbose",
+    "check-env": "node -e 'console.log(process.env)' | grep npm",
+    "codecheck": "npx eslint \"**/*.js\"",
+    "codecheckfix": "npx eslint --fix \"**/*.js\"",
+    "coverage": "npx nyc mocha ./test/**/*.js --timeout 10000 --coverage",
+    "htmlreport": "npx nyc report --reporter=html"
+  },
+  "keywords": [],
+  "author": "Raghuram Kokalla <raghuram@sg.ibm.com>",
+  "repository": {
+    "directory": "sdk/privacy",
+    "type": "git",
+    "url": "https://github.com/ibm-security-verify/verify-sdk-javascript.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.23.0",
+    "debug": "4.3.1"
+  },
+  "devDependencies": {
+    "docdash": "^1.2.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.27.0",
+    "eslint-config-google": "^0.14.0",
+    "jsdoc": "^3.6.6",
+    "jsdoc-fresh": "^1.1.0",
+    "minami": "^1.2.3",
+    "mocha": "^8.3.0",
+    "nyc": "^15.1.0"
+  }
+}

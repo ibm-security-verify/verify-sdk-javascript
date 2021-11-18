@@ -3,7 +3,12 @@
 Review the following guidelines for submitting questions, issues, or changes to this repository.
 
 ## Coding Style
-This SDK follows coding style based on [JavaScript guidelines](https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Code_guidelines/JavaScript/) for source code in the Javascript Programming Language.
+
+The source code adheres to [Google Javascript](https://google.github.io/styleguide/jsguide.html) and corresponndingly enforced by [eslint](https://github.com/google/eslint-config-google). Ensure to:
+
+1. Use promises/async functions
+2. Run `npm run codecheck` and fix errors
+3. Have proper syntax documentation and examples
 
 ## Issues and Questions
 
@@ -15,12 +20,15 @@ Before that, please search for similar issues. It's possible somebody has encoun
 If you want to contribute to the repository, here's a quick guide:
 
 1. Fork the repository
-2. Develop and test your code changes:
-    * Follow the coding style as documented above
+2. Create a feature or bugfix branch on your forked repository
+3. Develop and test your code changes:
+    * Follow the coding style as documented above and validate it with eslint.
     * Please add one or more tests to validate your changes.
-3. Make sure everything builds/tests cleanly.
-4. Commit your changes
-5. Push to your fork and submit a pull request to the `master` branch
+4. Make sure everything builds/tests cleanly.
+5. Commit your changes.
+6. [Rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) your local
+   changes against the `main` branch.
+7. Push to your fork's branch and submit a pull request to the `main` branch.
 
 
 ## Generating documentation

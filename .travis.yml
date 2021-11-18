@@ -1,0 +1,40 @@
+language: node_js
+node_js:
+  - '16'
+
+before_deploy:
+  # Deploy documentation to GH Pages
+  - cd ./sdk/privacy && npm i && npm run docs && cd -
+  - PAGES_USER="ibm-security-verify"
+  - PAGES_REPO="ibm-security-verify.github.io"
+  - PAGES_BRANCH="master"
+  - GH_REPO="github.com/${PAGES_USER}/${PAGES_REPO}.git"
+  - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
+  - cd ${HOME}
+  - git clone git://${GH_REPO}
+  - cd ${PAGES_REPO}
+  - git checkout ${PAGES_BRANCH} || git checkout -b ${PAGES_BRANCH}
+
+  - MODULE=privacy
+  - DOC_TARGET_FOLDER="javascript/${MODULE}/docs"
+  - mkdir -p ${DOC_TARGET_FOLDER}
+  - "\\cp -R ${TRAVIS_BUILD_DIR}/sdk/${MODULE}/docs/. ${DOC_TARGET_FOLDER}/"
+
+  - git config user.email "raghu4u449@gmail.com"
+  - git config user.name "rramk"
+  - git add -A
+  - git diff-index --quiet HEAD || git commit -m "${MESSAGE}"
+  - git push -u https://${GITHUB_IO_TOKEN}@github.com/${PAGES_USER}/${PAGES_REPO}
+
+deploy:
+  # We've already published, just exit with success
+  provider: script
+  skip-cleanup: true
+  script: echo "Github docs push successful"
+  on:
+    # Which branch on commit/push will trigger deployment
+    branch: master
+
+env:
+  global:
+    secure: <token generated using travis encrypt GITHUB_IO_TOKEN=token>

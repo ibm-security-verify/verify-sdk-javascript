@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      privacy.js - Documentation
+  </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  
+
+  
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">
+      SDK Client Reference
+    </h3>
+
+    
+
+    <h3>Classes</h3><ul><li id="ConfigurationError-nav"><a href="ConfigurationError.html">ConfigurationError</a></li><li id="Privacy-nav"><a href="module-Privacy-Privacy.html">Privacy</a><ul class='methods'><li data-type="method" id="Privacy-assess-nav"><a href="module-Privacy-Privacy.html#assess">assess</a></li><li data-type="method" id="Privacy-getConsentMetadata-nav"><a href="module-Privacy-Privacy.html#getConsentMetadata">getConsentMetadata</a></li><li data-type="method" id="Privacy-getUserConsents-nav"><a href="module-Privacy-Privacy.html#getUserConsents">getUserConsents</a></li><li data-type="method" id="Privacy-storeConsents-nav"><a href="module-Privacy-Privacy.html#storeConsents">storeConsents</a></li></ul></li></ul><h3>Modules</h3><ul><li id="Privacy-nav"><a href="module-Privacy.html">Privacy</a></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        privacy.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>// Copyright contributors to the IBM Security Verify Privacy SDK
+// for JavaScript project
+
+const ConfigurationError = require('./errors/configurationError');
+const DPCMService = require('./services/dpcm/dpcmService');
+const StringUtils = require('./utils/stringUtils');
+const debug = require('debug')('verify:privacy');
+
+/**
+ * Privacy module is the main module in the Privacy SDK
+ * @module Privacy
+ */
+
+/**
+ * Class representing the Privacy SDK for IBM Security Verify. Used to
+ * perform privacy assessment for attributes being requested and metadata
+ * required to build consent experiences.
+ *
+ * @author Vivek Shankar
+ */
+class Privacy {
+  /**
+   * Create a new {@link Privacy} object.
+   *
+   * @param {Object} config Global configuration for the SDK
+   * @param {string} config.tenantUrl The Verify tenant hostname, including
+   * the protocol.
+   * @param {Object} auth Auth object contains property values to authorize
+   * requests to Verify
+   * @param {string} auth.accessToken The OAuth 2.0 token used to authorize
+   * requests. If the access token is generated using a privileged API client
+   * (as opposed to one generated on a user authentication flow), the
+   * &lt;code>context.subjectId&lt;/code> is required.
+   * @param {Object} context Context object contains Privacy SDK specific
+   * context
+   * @param {string} context.subjectId The user/subject identifier that may be
+   * a Verify user identifier.
+   * @param {boolean} context.isExternalSubject Indicates if the subject is
+   * known to Verify.
+   * @param {string} context.ipAddress The IP address of the user agent. If this
+   * library is used in a backend system, this IP should be obtained from the
+   * request headers that contain the actual user agent IP address.
+   *
+   * @example
+   * const Privacy = require('verify-privacy-sdk-js');
+   * const client = new Privacy({
+   *   "tenantUrl": "https://abc.verify.ibm.com"
+   * }, {
+   *   "accessToken": "lasfjsdlfjsldjfglsdjfglsjl"
+   * }, {
+   *   "ipAddress": "1.2.3.4"
+   * });
+   */
+  constructor(config, auth, context = {}) {
+    if (!StringUtils.has(config, 'tenantUrl')) {
+      throw new ConfigurationError(
+          `Cannot find property 'tenantUrl' in configuration settings.`);
+    }
+
+    if (!StringUtils.has(auth, 'accessToken')) {
+      throw new ConfigurationError(
+          `Cannot find property 'accessToken' in auth`);
+    }
+
+    this._config = config;
+    this._auth = auth;
+    this._context = context;
+  }
+
+  /**
+   * Evaluate the attributes requested for approval.
+   *
+   * Request the consent management system to approve the use of attributes
+   * for the specified purpose, access type and an optional value. If the
+   * access type is not specified, it is set to a system default.
+   *
+   * @param {Array} items The data items that require approval for use
+   * @param {string} items.purposeId The purpose ID representing the privacy
+   * purpose configured on Verify. If you are checking for the consent status
+   * of EULA, use the EULA identifier here.
+   * @param {string} items.accessTypeId The access type ID representing the
+   * available access types on Verify. This must be one of the access types
+   * selected for the purpose.
+   * @param {string} items.attributeId The attribute ID on Verify. This must be
+   * configured as one of the attributes for the purpose. This may be optional
+   * if no attributes are configured for the purpose. If this is empty and the
+   * purpose has associated attributes, all attributes are assessed and the
+   * decision is included in the result array.
+   * @param {string} items.attributeValue The attribute value for the attribute.
+   * This is typically used when the user has more than one value for the
+   * attribute. This is optional.
+   *
+   * @return {Promise&lt;WrappedAssessment>} The status of the assessment
+   * and additional details
+   *
+   * @example
+   * let r = await client.assess([
+   *   {
+   *     // allow mobile number for marketing
+   *     "purposeId": "marketing",
+   *     "attributeId": "mobile_number",
+   *     "accessTypeId": "default"
+   *   },
+   *   {
+   *     // default end user license agreement
+   *     "purposeId": "defaultEULA",
+   *   }
+   * ])
+   *
+   * if (r.status == "consent") {
+   *   // redirect for consent or build the page here
+   *   // and render. consider filtering out items
+   *   // in the assessment that are not approved because
+   *   // of a rule violation
+   * } else if (r.status == "approved") {
+   *   // the world is your oyster. go forth and conquer
+   * } else {
+   *   // examine the assessment and show an appropriate error
+   * }
+   */
+  async assess(items) {
+    const methodName = `${Privacy.name}:assess(items)`;
+    const service = new DPCMService(
+        this._auth, this._config.tenantUrl, this._context);
+    try {
+      const assessment = await service.requestApproval(items);
+      debug(`[${methodName}]`, 'assessment:',
+          JSON.stringify(assessment));
+
+      // process the response
+      if (!Array.isArray(assessment)) {
+        const desc = 'assessment is expected to be an array. Received ' +
+            `${typeof assessment}`;
+        return {
+          status: 'error',
+          error: {
+            'messageId': 'INVALID_DATATYPE',
+            'messageDescription': desc,
+          },
+        };
+      }
+
+      let status = await service.processAssessment(assessment);
+      if (status == null) {
+        // final fallback. shouldn't happen
+        status = 'denied';
+      }
+
+      return {
+        status: status,
+        assessment,
+      };
+    } catch (error) {
+      const jsonResp = {status: 'error'};
+      if (error.response.data) {
+        jsonResp.error = error.response.data;
+        debug(`[${methodName}]`, 'error data:', error.response.data);
+      } else {
+        debug(`[${methodName}]`, 'error:', error);
+      }
+      return jsonResp;
+    }
+  }
+
+  /**
+   * Get consent metadata that can be used to build the consent page presented
+   * to the data subject/user, including the current state of consent.
+   *
+   * @param {Array} items The data items that require approval for use
+   * @param {string} items.purposeId The purpose ID representing the privacy
+   * purpose configured on Verify. If you are checking for the consent status
+   * of EULA, use the EULA identifier here.
+   * @param {string} items.accessTypeId The access type ID representing the
+   * available access types on Verify. This must be one of the access types
+   * selected for the purpose. If this is not provided in the input, it is
+   * defaulted to 'default'. Wildcards are not allowed.
+   * @param {string} items.attributeId The attribute ID on Verify. This must be
+   * configured as one of the attributes for the purpose. This may be optional
+   * if no attributes are configured for the purpose. Wildcards are not allowed.
+   * @param {string} items.attributeValue The attribute value for the attribute.
+   * This is typically used when the user has more than one value for the
+   * attribute. This is optional.
+   *
+   * @return {Promise&lt;WrappedMetadata>} The status of the request
+   * and any consent metadata
+   *
+   * @example
+   * let r = await client.getConsentMetadata([
+   *   {
+   *     // allow mobile number for marketing
+   *     "purposeId": "marketing",
+   *     "attributeId": "mobile_number",
+   *     "accessTypeId": "default"
+   *   },
+   *   {
+   *     // default end user license agreement
+   *     "purposeId": "defaultEULA",
+   *   }
+   * ])
+   *
+   * if (r.status == "done") {
+   *   // render the page based on the r.metadata
+   * }
+   */
+  async getConsentMetadata(items) {
+    const methodName = `${Privacy.name}:getConsentMetadata(items)`;
+    const service = new DPCMService(this._auth, this._config.tenantUrl,
+        this._context);
+    try {
+      // retrieve the list of purposes
+      const purposes = new Set();
+      const itemFilter = {};
+      for (const item of items) {
+        purposes.add(item.purposeId);
+
+        if (!item['accessTypeId'] || item['accessTypeId'] == null) {
+          item.accessTypeId = 'default';
+        }
+
+        const itemKey = item.purposeId + '/' +
+            StringUtils.getOrDefault(item, 'attributeId', '') +
+            '.' + StringUtils.getOrDefault(item, 'accessTypeId', '');
+        const attrValue = StringUtils.getOrDefault(item, 'attributeValue', '');
+        if (!itemFilter.hasOwnProperty(itemKey)) {
+          // initialize
+          itemFilter[itemKey] = [attrValue];
+        } else {
+          itemFilter[itemKey].push(attrValue);
+        }
+      }
+
+      // get metadata
+      const response = await service.getConsentMetadata(Array.from(purposes));
+      debug(`[${methodName}]`, 'response:', JSON.stringify(response));
+
+      // filter and normalize
+      const metadata = await service.processConsentMetadata(
+          itemFilter, response);
+      debug(`[${methodName}]`, 'metadata:', JSON.stringify(metadata));
+
+      return {status: 'done', metadata};
+    } catch (error) {
+      const jsonResp = {status: 'error'};
+      if (error.response.data) {
+        jsonResp.error = error.response.data;
+        debug(`[${methodName}]`, 'error data:', error.response.data);
+      } else {
+        debug(`[${methodName}]`, 'error:', error);
+      }
+      return jsonResp;
+    }
+  }
+
+  /**
+    * Fetches user consents.
+    *
+    * @param {Object} options An optional parameter object
+    * @param {boolean} options.filterByCurrentApplication If set to true,
+    *  filters consentsby the application id present in the authentication token
+    * @return {Promise&lt;WrappedGetUserConsents>}
+    *
+    * @example
+    * let r = await client.getUserConsents()
+    * if (r.status == "done") {
+    *   // render the page based on the r.consents
+    * }
+    */
+  async getUserConsents(options) {
+    const methodName = `${Privacy.name}:getUserConsents()`;
+    const service = new DPCMService(this._auth, this._config.tenantUrl,
+        this._context);
+    try {
+      const resp = await service.getUserConsents(options);
+      debug(`[${methodName}]`, 'response:',
+          resp);
+
+      return {status: 'done', consents: resp.consents};
+    } catch (error) {
+      const jsonResp = {status: 'error'};
+      if (error.response &amp;&amp; error.response.data) {
+        jsonResp.error = error.response.data;
+        debug(`[${methodName}]`, 'error data:', error.response.data);
+      } else {
+        debug(`[${methodName}]`, 'error:', error);
+      }
+      return jsonResp;
+    }
+  }
+
+  /**
+    * Store consents for the user.
+    * &lt;br>&lt;br>Consents may only be created typically, except if the consent
+    * end time needs to be updated. Only 10 consent operations are allowed
+    * at a time.
+    *
+    * @param {Consent[]} consents The full consent records that need to be
+    * created or updated
+    *
+    * @return {Promise&lt;WrappedStoreUserConsents>} Consent operation response
+    * @example
+    * let r = await client.storeConsents([
+    *   {
+    *     "purposeId": "marketing",
+    *     "attributeId": "mobile_number",
+    *     "state": 3 // opt-in
+    *   }
+    * ])
+    *
+    * if (r.status == "success") {
+    *   // Warp 11... engage
+    * } else {
+    *   // loop through the r.results to determine what failed and why
+    * }
+    */
+  async storeConsents(consents) {
+    const methodName = `${Privacy.name}:storeConsents(auth, consents)`;
+    if (!Array.isArray(consents)) {
+      const desc = 'consents are expected to be an array. Received ' +
+          `${typeof consents}`;
+      return {
+        status: 'error',
+        error: {
+          'messageId': 'INVALID_DATATYPE',
+          'messageDescription': desc,
+        },
+      };
+    }
+    const service = new DPCMService(this._auth, this._config.tenantUrl,
+        this._context);
+    try {
+      const r = await service.storeConsents(consents);
+      debug(`[${methodName}]`, 'response:',
+          r);
+
+      // parse the response
+      const status = (r.messageId != 'CSIBT0070I') ? 'fail' : 'success';
+      return {status: status, results: r.results};
+    } catch (error) {
+      debug(`[${methodName}]`, 'error:', error);
+      const jsonResp = {status: 'deny'};
+      if (error.response.data) {
+        jsonResp.error = error.response.data;
+      }
+      return jsonResp;
+    }
+  }
+}
+
+/**
+ * Enumeration of different possible consent display types
+ * @enum {ConsentDisplayTypesEnum}
+ * @readonly
+ */
+Privacy.ConsentDisplayTypes = {
+  DO_NOT_SHOW: 1,
+  TRANSPARENT: 2,
+  OPTIN_OR_OUT: 3,
+  ALLOW_OR_DENY: 4,
+};
+
+/**
+ * Enumeration of different possible consent types
+ * @enum {ConsentTypesEnum}
+ * @readonly
+ */
+Privacy.ConsentTypes = {
+  ALLOW: 1,
+  DENY: 2,
+  OPTIN: 3,
+  OPTOUT: 4,
+  TRANSPARENT: 5,
+};
+
+module.exports = Privacy;
+</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>

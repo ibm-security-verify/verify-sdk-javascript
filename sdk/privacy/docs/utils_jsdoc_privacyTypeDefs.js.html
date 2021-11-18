@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      utils/jsdoc/privacyTypeDefs.js - Documentation
+  </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  
+
+  
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">
+      SDK Client Reference
+    </h3>
+
+    
+
+    <h3>Classes</h3><ul><li id="ConfigurationError-nav"><a href="ConfigurationError.html">ConfigurationError</a></li><li id="Privacy-nav"><a href="module-Privacy-Privacy.html">Privacy</a><ul class='methods'><li data-type="method" id="Privacy-assess-nav"><a href="module-Privacy-Privacy.html#assess">assess</a></li><li data-type="method" id="Privacy-getConsentMetadata-nav"><a href="module-Privacy-Privacy.html#getConsentMetadata">getConsentMetadata</a></li><li data-type="method" id="Privacy-getUserConsents-nav"><a href="module-Privacy-Privacy.html#getUserConsents">getUserConsents</a></li><li data-type="method" id="Privacy-storeConsents-nav"><a href="module-Privacy-Privacy.html#storeConsents">storeConsents</a></li></ul></li></ul><h3>Modules</h3><ul><li id="Privacy-nav"><a href="module-Privacy.html">Privacy</a></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        utils/jsdoc/privacyTypeDefs.js
+      </h1>
+    
+
+    
+      
+
+<section>
+  <article>
+    <pre class="prettyprint source linenums"><code>// Copyright contributors to the IBM Security Verify Privacy SDK
+// for JavaScript project
+
+/**
+ * The assessment decision object for a specific request item
+ * @typedef {Object} AssessmentDecision
+ * @property {string} attributeId The attribute identifier is only included
+ * if the request doesn't specify an attribute to be assessed.
+ * @property {boolean} approved Indicates if the request has been approved
+ * @property {boolean} requiresConsent Indicates if user consent is required.
+ * This does not imply that an existing consent is positive if this value
+ * is set to false.
+ * @property {VerifyError} reason If "approved" is false, the details
+ * of the denial
+ */
+
+/**
+ * The assessment object for a specific request item
+ * @typedef {Object} Assessment
+ * @property {string} purposeId The purpose or EULA ID representing the privacy
+ * purpose or EULA configured on Verify.
+ * @property {string} accessTypeId The access type ID representing one of the
+ * available access types on Verify. This is one of the access types configured
+ * for the purpose and optionally the attribute.
+ * @property {string} attributeId The attribute ID on Verify. This is one of the
+ * attributes for the purpose.
+ * @property {string} attributeValue The attribute value provided in the
+ * request.
+ * @property {AssessmentDecision[]} result The assessment decision objects. This
+ * might contain more than one object if the request does not include a
+ * specific attribute. In this case, the result contains the corresponding
+ * &lt;code>attributeId&lt;/code>.
+ */
+
+/**
+ * The assessment response object
+ * @typedef {Object} WrappedAssessment
+ * @property {string} status The overall assessment status is computed based on
+ * the contents of the assessment.
+ * &lt;br>&lt;code>approved&lt;/code> - all items are approved
+ * &lt;br>&lt;code>consent&lt;/code> - some or all items require consent
+ * &lt;br>&lt;code>multistatus&lt;/code> - none of the items require consent but some
+ * items are approved and others are denied because of user action (opt-out)
+ * or policy rule &lt;br>&lt;code>denied&lt;/code> - approval is denied for all items
+ * &lt;br>&lt;code>error&lt;/code> - invalid request or system error
+ * @property {Assessment[]} assessment The assessment details for each requested
+ * item
+ * @property {VerifyError} error The error details if the status is "error"
+ */
+
+/**
+ * The consent record
+ * @typedef {Object} Consent
+ * @property {string} purposeId The purpose or EULA ID representing the privacy
+ * purpose or EULA configured on Verify.
+ * @property {string} accessTypeId The access type ID representing one of the
+ * available access types on Verify. This is one of the access types configured
+ * for the purpose and optionally the attribute.
+ * @property {string} attributeId The attribute ID on Verify. This is one of the
+ * attributes for the purpose.
+ * @property {string} attributeValue The attribute value for the attribute.
+ * This is typically used when the user has more than one value for the
+ * attribute and is consenting to a specific value.
+ * @property {number} startTime The time since Epoch (in seconds) that
+ * indicates when the consent becomes active.
+ * @property {number} endTime The time since Epoch (in seconds) that indicates
+ * when the consent elapses.
+ * @property {boolean} isGlobal Indicates if the consent applies to all
+ * applications
+ * @property {number} status This is the status of the consent and can be
+ * one of -
+ * &lt;br>&lt;code>1&lt;/code> - Active
+ * &lt;br>&lt;code>2&lt;/code> - Expired
+ * &lt;br>&lt;code>3&lt;/code> - Inactive
+ * &lt;br>&lt;code>8&lt;/code> - New consent required
+ * @property {ConsentTypesEnum} state This is the consent type provided by the
+ * user
+ * @property {string} geoIP This is the IP address where the user consents
+ * @property {Array} customAttributes This is a list of optional attributes.
+ * Object type within the array is
+ * &lt;code>{ "name": "somekey", "value": "somevalue" }&lt;/code>
+ */
+
+/**
+ * The consent metadata record
+ * @typedef {Object} MetadataRecord
+ * @property {string} purposeId The purpose or EULA ID representing the privacy
+ * purpose or EULA configured on Verify.
+ * @property {string} purposeName The purpose or EULA name
+ * @property {string} accessTypeId The access type ID representing one of the
+ * available access types on Verify. This is one of the access types configured
+ * for the purpose and optionally the attribute.
+ * @property {string} accessType The access type name
+ * @property {string} attributeId The attribute ID on Verify. This is one of the
+ * attributes for the purpose.
+ * @property {string} attributeName The attribute name
+ * @property {string} attributeValue The attribute value in the consent record.
+ * @property {number} defaultConsentDuration The default duration configured for
+ * the user consent. This applies if no explicit start and end time is provided.
+ * @property {boolean} assentUIDefault Indicates if the consent prompt should
+ * default the selection to "accepted"
+ * @property {ConsentDisplayTypesEnum} consentType Indicates the type of consent
+ * that needs to be collected and stored. If the value is
+ * &lt;code>ConsentDisplayTypes.DO_NOT_SHOW&lt;code>, do not show a consent request
+ * to the user.
+ * @property {string} termsOfUseRef The terms of use if this record references
+ * a EULA.
+ * @property {string} status The current status of consent. This can be one of -
+ * &lt;br>&lt;code>NONE&lt;/code> - No consent
+ * &lt;br>&lt;code>ACTIVE&lt;/code> - An active consent record exists. However, the
+ * consent may not translate to "yes".
+ * &lt;br>&lt;code>NOT_ACTIVE&lt;/code> - A user consent record exists but the start
+ * time is in the future.
+ * &lt;br>&lt;code>EXPIRED&lt;/code> - A user consent record exists but it is no longer
+ * valid. This may be due to a new privacy rule or a change in configuration or
+ * the consent has lapsed.
+ * @property {Consent} consent The user consent record that may or may not
+ * be active.
+ */
+
+/**
+ * The consent metadata object that contains records based on the request
+ * @typedef {Object} Metadata
+ * @property {Array.&lt;MetadataRecord>} eula The metadata records related
+ * to the EULA category
+ * @property {Array.&lt;MetadataRecord>} default The metadata records related
+ * to the default purpose-aware attribute category
+ */
+
+/**
+ * The consent metadata response object
+ * @typedef {Object} WrappedMetadata
+ * @property {string} status The overall metadata status is computed based
+ * on whether the data was received or not.
+ * &lt;br>&lt;code>done&lt;/code> - the metadata is retrieved
+ * &lt;br>&lt;code>error&lt;/code> - invalid request or system error
+ * @property {Metadata} metadata The metadata for rendering a consent page
+ * @property {VerifyError} error The error details if the status is "error"
+ */
+
+/**
+ * The response object for &lt;code>getUserConsents&lt;/code>
+ * @typedef {Object} WrappedGetUserConsents
+ * @property {string} status The overall status is computed based on whether
+ * the data was received or not.
+ * &lt;br>&lt;code>done&lt;/code> - the consents are retrieved
+ * &lt;br>&lt;code>error&lt;/code> - invalid request or system error
+ * @property {Consent[]} consents The list of consents
+ * @property {VerifyError} error The error details if the status is "error"
+ */
+
+/**
+ * The consent operation result
+ * @typedef {Object} ConsentOpResultValue
+ * @property {string} id The consent record identifier
+ * @property {string} purposeId The purpose or EULA ID representing the privacy
+ * purpose or EULA configured on Verify.
+ * @property {string} accessTypeId The access type ID representing one of the
+ * available access types on Verify. This is one of the access types configured
+ * for the purpose and optionally the attribute.
+ * @property {string} attributeId The attribute ID on Verify. This is one of the
+ * attributes for the purpose.
+ * @property {string} attributeValue The attribute value for the attribute.
+ * This is typically used when the user has more than one value for the
+ * attribute and is consenting to a specific value.
+ * @property {ConsentTypesEnum} state This is the consent type provided by the
+ * user.
+ */
+
+/**
+ * The consent operation result
+ * @typedef {Object} ConsentOpResult
+ * @property {string} result The result of the operation can be
+ * &lt;code>success&lt;/code> or &lt;code>failure&lt;/code>
+ * @property {ConsentOpResultValue} value The consent storage request record
+ * @property {string} error The error if the result is &lt;code>failure&lt;code>
+ */
+
+/**
+ * The response object for &lt;code>storeUserConsents&lt;/code>
+ * @typedef {Object} WrappedStoreUserConsents
+ * @property {string} status The overall status is computed based on whether
+ * the data was received or not.
+ * &lt;br>&lt;code>success&lt;/code> - the consents have been saved successfully
+ * &lt;br>&lt;code>fail&lt;/code> - some or all consents could not be saved.
+ * Check &lt;code>results&lt;/code> for the reason
+ * &lt;br>&lt;code>error&lt;/code> - invalid request or system error
+ * @property {ConsentOpResult[]} results The results of consent operation.
+ * This should be consulted when the status is &lt;code>fail&lt;/code>
+ * @property {VerifyError} error The error details if the status is "error"
+ */
+
+/**
+ * Enumeration of different possible consent display types
+ * @typedef {number} ConsentDisplayTypesEnum
+ * @property {number} DO_NOT_SHOW No consent needs to be collected or recorded
+ * and do not show the user the request.
+ * @property {number} TRANSPARENT User is shown the consent record but cannot
+ * choose to deny. Set &lt;code>ConsentTypes.TRANSPARENT&lt;/code> as the consent
+ * state.
+ * @property {number} OPTIN_OR_OUT User has to opt-in or opt-out. If the user
+ * approves of the consent request, use &lt;code>ConsentTypes.OPTIN&lt;/code>. If the
+ * user denies, use &lt;code>ConsentTypes.OPTOUT&lt;/code>.
+ * @property {number} ALLOW_OR_DENY User has to allow or deny. If the user
+ * approves of the consent request, use &lt;code>ConsentTypes.ALLOW&lt;/code>. If the
+ * user denies, use &lt;code>ConsentTypes.DENY&lt;/code>.
+ */
+
+/**
+ * Enumeration of different possible consent types
+ * @typedef {number} ConsentTypesEnum
+ * @property {number} ALLOW Usual consent that is not governed by any
+ * regulation. This is the consent type expected if the user chose to
+ * approve the request and the consent display type returned by
+ * &lt;code>getConsentMetadata&lt;/code> is
+ * &lt;code>ConsentDisplayTypes.ALLOW_OR_DENY&lt;/code>.
+ * @property {number} DENY Usual consent that is not governed by any regulation.
+ * This is the consent type expected if the user chose to not approve the
+ * request and the consent display type returned by
+ * &lt;code>getConsentMetadata&lt;/code> is
+ * &lt;code>ConsentDisplayTypes.ALLOW_OR_DENY&lt;/code>.
+ * @property {number} OPTIN Opt-in required based on the assessment.
+ * This is the consent type expected if the user chose to
+ * approve the request and the consent display type returned by
+ * &lt;code>getConsentMetadata&lt;/code> is
+ * &lt;code>ConsentDisplayTypes.OPTIN_OR_OUT&lt;/code>.
+ * @property {number} OPTOUT Opt-out required based on the assessment. This is
+ * the consent type expected if the user chose to not approve the request
+ * and the consent display type returned by
+ * &lt;code>getConsentMetadata&lt;/code> is
+ * &lt;code>ConsentDisplayTypes.OPTIN_OR_OUT&lt;/code>.
+ * @property {number} TRANSPARENT User opted to implicitly consent. This is the
+ * consent type expected when the consent display type returned by
+ * &lt;code>getConsentMetadata&lt;/code> is
+ * &lt;code>ConsentDisplayTypes.TRANSPARENT&lt;/code>.
+ */
+</code></pre>
+  </article>
+</section>
+
+    
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>

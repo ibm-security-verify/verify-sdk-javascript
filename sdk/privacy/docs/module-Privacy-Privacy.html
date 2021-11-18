@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      Privacy - Documentation
+  </title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  
+
+  
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">
+      SDK Client Reference
+    </h3>
+
+    
+
+    <h3>Classes</h3><ul><li id="ConfigurationError-nav"><a href="ConfigurationError.html">ConfigurationError</a></li><li id="Privacy-nav"><a href="module-Privacy-Privacy.html">Privacy</a><ul class='methods'><li data-type="method" id="Privacy-assess-nav"><a href="module-Privacy-Privacy.html#assess">assess</a></li><li data-type="method" id="Privacy-getConsentMetadata-nav"><a href="module-Privacy-Privacy.html#getConsentMetadata">getConsentMetadata</a></li><li data-type="method" id="Privacy-getUserConsents-nav"><a href="module-Privacy-Privacy.html#getUserConsents">getUserConsents</a></li><li data-type="method" id="Privacy-storeConsents-nav"><a href="module-Privacy-Privacy.html#storeConsents">storeConsents</a></li></ul></li></ul><h3>Modules</h3><ul><li id="Privacy-nav"><a href="module-Privacy.html">Privacy</a></li></ul><h3 id="global-nav"><a href="global.html">Global</a></h3>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        Privacy
+      </h1>
+    
+
+    
+
+<section>
+  <header>
+    
+      <h2>
+        
+          <span class="ancestors"><a href="module-Privacy.html">Privacy</a>~</span>
+        
+        Privacy
+        
+      </h2>
+
+      
+        <div class="class-description">
+          <p>Class representing the Privacy SDK for IBM Security Verify. Used to
+perform privacy assessment for attributes being requested and metadata
+required to build consent experiences.</p>
+        </div>
+      
+    
+  </header>
+
+  <article>
+    <div class="container-overview">
+      
+        
+
+
+  
+    <h2>Constructor</h2>
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#Privacy">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="Privacy">
+      <span class="type-signature"></span>new Privacy<span class="signature">(config, auth, context)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Create a new <code>Privacy</code> object.</p>
+  </div>
+
+
+
+
+
+
+ 
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>config</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Global configuration for the SDK</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>tenantUrl</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The Verify tenant hostname, including
+the protocol.</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>auth</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Auth object contains property values to authorize
+requests to Verify</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>accessToken</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The OAuth 2.0 token used to authorize
+requests. If the access token is generated using a privileged API client
+(as opposed to one generated on a user authentication flow), the
+<code>context.subjectId</code> is required.</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>context</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Context object contains Privacy SDK specific
+context</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>subjectId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The user/subject identifier that may be
+a Verify user identifier.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>isExternalSubject</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      boolean
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>Indicates if the subject is
+known to Verify.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>ipAddress</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The IP address of the user agent. If this
+library is used in a backend system, this IP should be obtained from the
+request headers that contain the actual user agent IP address.</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+      <ul>
+        
+          <li>
+            Vivek Shankar
+          </li>
+        
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line21">line 21</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#Privacy-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="Privacy-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>const Privacy = require('verify-privacy-sdk-js');
+const client = new Privacy({
+  "tenantUrl": "https://abc.verify.ibm.com"
+}, {
+  "accessToken": "lasfjsdlfjsldjfglsdjfglsjl"
+}, {
+  "ipAddress": "1.2.3.4"
+});</code></pre>
+
+
+  </div>
+
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+
+<h4 class="name" id=".ConsentDisplayTypes">
+  ConsentDisplayTypes
+</h4>
+
+
+
+
+  <div class="description">
+    <p>Enumeration of different possible consent display types</p>
+  </div>
+
+
+
+
+  <h5 class="subsection-title">Properties:</h5>
+
+  
+
+<table class="props">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+
+    <tr>
+      
+        <td class="name"><code>DO_NOT_SHOW</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentDisplayTypesEnum">ConsentDisplayTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+
+    <tr>
+      
+        <td class="name"><code>TRANSPARENT</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentDisplayTypesEnum">ConsentDisplayTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+
+    <tr>
+      
+        <td class="name"><code>OPTIN_OR_OUT</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentDisplayTypesEnum">ConsentDisplayTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+
+    <tr>
+      
+        <td class="name"><code>ALLOW_OR_DENY</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentDisplayTypesEnum">ConsentDisplayTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+  </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line354">line 354</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id=".ConsentTypes">
+  ConsentTypes
+</h4>
+
+
+
+
+  <div class="description">
+    <p>Enumeration of different possible consent types</p>
+  </div>
+
+
+
+
+  <h5 class="subsection-title">Properties:</h5>
+
+  
+
+<table class="props">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+
+    <tr>
+      
+        <td class="name"><code>ALLOW</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentTypesEnum">ConsentTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+
+    <tr>
+      
+        <td class="name"><code>DENY</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentTypesEnum">ConsentTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+
+    <tr>
+      
+        <td class="name"><code>OPTIN</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentTypesEnum">ConsentTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+
+    <tr>
+      
+        <td class="name"><code>OPTOUT</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentTypesEnum">ConsentTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+
+    <tr>
+      
+        <td class="name"><code>TRANSPARENT</code></td>
+      
+
+      <td class="type">
+        
+          
+    <span class="param-type">
+      <a href="global.html#ConsentTypesEnum">ConsentTypesEnum</a>
+    </span>
+
+    
+
+
+        
+      </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          </td>
+    </tr>
+
+  
+  </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line366">line 366</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+    
+
+    
+      <h3 class="subsection-title">Methods</h3>
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#assess">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="assess">
+      <span class="type-signature">(async) </span>assess<span class="signature">(items)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#WrappedAssessment">WrappedAssessment</a>>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Evaluate the attributes requested for approval.</p>
+<p>Request the consent management system to approve the use of attributes
+for the specified purpose, access type and an optional value. If the
+access type is not specified, it is set to a system default.</p>
+  </div>
+
+
+
+
+
+
+ 
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>items</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Array
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The data items that require approval for use</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>purposeId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The purpose ID representing the privacy
+purpose configured on Verify. If you are checking for the consent status
+of EULA, use the EULA identifier here.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>accessTypeId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The access type ID representing the
+available access types on Verify. This must be one of the access types
+selected for the purpose.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>attributeId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The attribute ID on Verify. This must be
+configured as one of the attributes for the purpose. This may be optional
+if no attributes are configured for the purpose. If this is empty and the
+purpose has associated attributes, all attributes are assessed and the
+decision is included in the result array.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>attributeValue</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The attribute value for the attribute.
+This is typically used when the user has more than one value for the
+attribute. This is optional.</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+  <h5>Returns:</h5>
+  
+
+<table class="returns">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Promise.&lt;<a href="global.html#WrappedAssessment">WrappedAssessment</a>>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        <td class="description">
+          <p>The status of the assessment
+and additional details</p>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line121">line 121</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#assess-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="assess-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>let r = await client.assess([
+  {
+    // allow mobile number for marketing
+    "purposeId": "marketing",
+    "attributeId": "mobile_number",
+    "accessTypeId": "default"
+  },
+  {
+    // default end user license agreement
+    "purposeId": "defaultEULA",
+  }
+])
+
+if (r.status == "consent") {
+  // redirect for consent or build the page here
+  // and render. consider filtering out items
+  // in the assessment that are not approved because
+  // of a rule violation
+} else if (r.status == "approved") {
+  // the world is your oyster. go forth and conquer
+} else {
+  // examine the assessment and show an appropriate error
+}</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#getConsentMetadata">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="getConsentMetadata">
+      <span class="type-signature">(async) </span>getConsentMetadata<span class="signature">(items)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#WrappedMetadata">WrappedMetadata</a>>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Get consent metadata that can be used to build the consent page presented
+to the data subject/user, including the current state of consent.</p>
+  </div>
+
+
+
+
+
+
+ 
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>items</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Array
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The data items that require approval for use</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>purposeId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The purpose ID representing the privacy
+purpose configured on Verify. If you are checking for the consent status
+of EULA, use the EULA identifier here.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>accessTypeId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The access type ID representing the
+available access types on Verify. This must be one of the access types
+selected for the purpose. If this is not provided in the input, it is
+defaulted to 'default'. Wildcards are not allowed.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>attributeId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The attribute ID on Verify. This must be
+configured as one of the attributes for the purpose. This may be optional
+if no attributes are configured for the purpose. Wildcards are not allowed.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>attributeValue</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The attribute value for the attribute.
+This is typically used when the user has more than one value for the
+attribute. This is optional.</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+  <h5>Returns:</h5>
+  
+
+<table class="returns">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Promise.&lt;<a href="global.html#WrappedMetadata">WrappedMetadata</a>>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        <td class="description">
+          <p>The status of the request
+and any consent metadata</p>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line205">line 205</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#getConsentMetadata-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="getConsentMetadata-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>let r = await client.getConsentMetadata([
+  {
+    // allow mobile number for marketing
+    "purposeId": "marketing",
+    "attributeId": "mobile_number",
+    "accessTypeId": "default"
+  },
+  {
+    // default end user license agreement
+    "purposeId": "defaultEULA",
+  }
+])
+
+if (r.status == "done") {
+  // render the page based on the r.metadata
+}</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#getUserConsents">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="getUserConsents">
+      <span class="type-signature">(async) </span>getUserConsents<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#WrappedGetUserConsents">WrappedGetUserConsents</a>>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Fetches user consents.</p>
+  </div>
+
+
+
+
+
+
+ 
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>options</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>An optional parameter object</p>
+          
+            <h6>Properties</h6>
+            
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>filterByCurrentApplication</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      boolean
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>If set to true,
+filters consentsby the application id present in the authentication token</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+  <h5>Returns:</h5>
+  
+
+<table class="returns">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Promise.&lt;<a href="global.html#WrappedGetUserConsents">WrappedGetUserConsents</a>>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        <td class="description">
+          
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line268">line 268</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#getUserConsents-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="getUserConsents-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>let r = await client.getUserConsents()
+if (r.status == "done") {
+  // render the page based on the r.consents
+}</code></pre>
+
+
+  </div>
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#storeConsents">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="storeConsents">
+      <span class="type-signature">(async) </span>storeConsents<span class="signature">(consents)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="global.html#WrappedStoreUserConsents">WrappedStoreUserConsents</a>>}</span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    <p>Store consents for the user.
+<br><br>Consents may only be created typically, except if the consent
+end time needs to be updated. Only 10 consent operations are allowed
+at a time.</p>
+  </div>
+
+
+
+
+
+
+ 
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>consents</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Array.&lt;<a href="global.html#Consent">Consent</a>>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The full consent records that need to be
+created or updated</p>
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+  <h5>Returns:</h5>
+  
+
+<table class="returns">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Promise.&lt;<a href="global.html#WrappedStoreUserConsents">WrappedStoreUserConsents</a>>
+    </span>
+
+    
+
+
+          
+        </td>
+
+        <td class="description">
+          <p>Consent operation response</p>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line315">line 315</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="example-container">
+    <a class="link-icon" href="#storeConsents-examples">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h5 id="storeConsents-examples">Example</h5>
+    
+
+  <pre class="prettyprint"><code>let r = await client.storeConsents([
+  {
+    "purposeId": "marketing",
+    "attributeId": "mobile_number",
+    "state": 3 // opt-in
+  }
+])
+
+if (r.status == "success") {
+  // Warp 11... engage
+} else {
+  // loop through the r.results to determine what failed and why
+}</code></pre>
+
+
+  </div>
+
+
+      
+    
+
+    
+
+    
+  </article>
+</section>
+
+
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>
