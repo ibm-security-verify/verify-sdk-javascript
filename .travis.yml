@@ -21,7 +21,7 @@ before_deploy:
   - "\\cp -R ${TRAVIS_BUILD_DIR}/sdk/${MODULE}/docs/. ${DOC_TARGET_FOLDER}/"
 
   - git config user.email "raghu4u449@gmail.com"
-  - git config user.name "Raghuram Kokalla"
+  - git config user.name "rramk"
   - git add -A
   - git diff-index --quiet HEAD || git commit -m "${MESSAGE}"
   - git push -u https://${GITHUB_IO_TOKEN}@github.com/${PAGES_USER}/${PAGES_REPO}
