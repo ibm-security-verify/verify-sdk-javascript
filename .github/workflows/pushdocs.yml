@@ -1,0 +1,38 @@
+name: Push documentation to github pages repo
+
+env:
+  GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+
+# Trigger the workflow on push to main or when a github release is created
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [created]
+
+jobs:
+  pushdocs:
+    name: Push SDK documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sdk monorepo
+        uses: actions/checkout@v2
+        with:
+          path: monorepo
+
+      - name: Checkout github docs repo
+        uses: actions/checkout@v2
+        with:
+          repository: ibm-security-verify/rramtravisghtest
+          path: docs
+
+      - name: Install npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Push docs
+        run: ${{ github.workspace }}/monorepo/.github/scripts/pushdocs.sh
+        shell: bash
