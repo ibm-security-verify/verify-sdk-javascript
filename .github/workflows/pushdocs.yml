@@ -8,6 +8,8 @@ on:
   push:
     branches:
       - main
+    tags:
+    - '**'
   release:
     types: [created]
 
@@ -25,7 +27,7 @@ jobs:
       - name: Checkout github docs repo
         uses: actions/checkout@v2
         with:
-          repository: ibm-security-verify/rramtravisghtest
+          repository: ibm-security-verify/ibm-security-verify.github.io
           path: docs
 
       - name: Install npm
