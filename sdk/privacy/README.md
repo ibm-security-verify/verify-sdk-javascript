@@ -6,7 +6,7 @@ that leverages the data privacy & consent engine on IBM Security Verify.
 ---
 
 ```js
-const Privacy = require('@ibm-security-verify/privacy');
+const Privacy = require('@ibm-verify/privacy');
 
 // tenant information and other global config
 const config = { tenantUrl: "https://abc.verify.ibm.com" };
@@ -68,7 +68,7 @@ storeConsents = async (req, res) => {
 Use [npm](https://github.com/npm/cli) to install the SDK:
 
 ```bash
-$ npm install @ibm-security-verify/privacy
+$ npm install @ibm-verify/privacy
 ```
 
 ## Features

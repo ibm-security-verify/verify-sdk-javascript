@@ -26,13 +26,13 @@ Install using [Node Package Manager](https://www.npmjs.com):
 
 ```javascript
 # install the privacy sdk
-npm i @ibm-security-verify/privacy
+npm i @ibm-verify/privacy
 ```
 
 The above command will add the Privacy SDK to the `dependencies` section of the your `package.json`, as shown in the following example:
 
 ```javascript
 "dependencies": {
-    "@ibm-security-verify/privacy": "^1.0.0"
+    "@ibm-verify/privacy": "^1.0.0"
 }
 ```
