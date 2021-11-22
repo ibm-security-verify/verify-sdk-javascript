@@ -1,0 +1,35 @@
+{
+  "name": "@ibm-verify/adaptive-browser-sdk",
+  "version": "1.2.0",
+  "description": "",
+  "main": "adaptive-v1.js",
+  "scripts": {
+    "test": "echo \"no tests\"",
+    "clean": "rm -r node_modules package-lock.json",
+    "docs": "rm -r docs 2>/dev/null; npx jsdoc -c ./.jsdoc.json --verbose",
+    "codecheck": "npx eslint \"**/*.js\"",
+    "codecheckfix": "npx eslint --fix \"**/*.js\"",
+    "build": "./node_modules/browserify/bin/cmd.js lib/adaptive-v1.js -o dist/adaptive-v1.js -t [ babelify --presets [ @babel/preset-env ] ] && node_modules/.bin/babel-minify dist/adaptive-v1.js -o dist/adaptive-v1.min.js"
+  },
+  "keywords": [],
+  "author": "Adam Dorogi-Kaposi <adam.dorogi-kaposi@ibm.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM-Security/adaptive-browser-sdk"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-env": "^7.12.1",
+    "babel-minify": "^0.5.1",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "jsdoc": "^3.6.6",
+    "jsdoc-fresh": "^1.1.0",
+    "eslint": "^7.27.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "regenerator": "^0.14.7"
+  }
+}
