@@ -1,5 +1,5 @@
 {
-  "name": "@ibm-verify/adaptive-browser-sdk",
+  "name": "@ibm-verify/adaptive-browser",
   "version": "1.2.0",
   "description": "",
   "main": "adaptive-v1.js",
@@ -13,9 +13,17 @@
   },
   "keywords": [],
   "author": "Adam Dorogi-Kaposi <adam.dorogi-kaposi@ibm.com>",
+  "contributors": [
+    {
+      "name": "Lachlan Ashcroft",
+      "email": "Lachlan.Ashcroft@ibm.com",
+      "url": "https://github.com/loxstomper"
+   }
+  ],
   "repository": {
+    "directory": "sdk/adaptive-browser",
     "type": "git",
-    "url": "https://github.com/IBM-Security/adaptive-browser-sdk"
+    "url": "https://github.com/ibm-security-verify/verify-sdk-javascript.git"
   },
   "license": "MIT",
   "devDependencies": {
