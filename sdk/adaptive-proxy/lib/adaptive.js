@@ -302,6 +302,7 @@ class Adaptive {
    * @param {string} signature The signature of the challenge data that was
    * produced by the user-agent authenticator.
    * @param {string} clientDataJSON The base64 encoded client data JSON object.
+   * @param {string} credentialId The Id of the credential (from authenticator).
    * @return {Promise<Object>} The JWT validation result object. The result
    * object has a <code>status</code> property of either <code>allow</code>,
    * <code>deny</code>, or <code>requires</code>.
@@ -356,7 +357,7 @@ class Adaptive {
    */
   async evaluateFIDO({sessionId, userAgent, ipAddress,
     evaluationContext='login'}, transactionId, relyingPartyId,
-  authenticatorData, userHandle, signature, clientDataJSON) {
+  authenticatorData, userHandle, signature, clientDataJSON, credentialId) {
     const context = {sessionId, userAgent, ipAddress, evaluationContext};
     const transaction = this._transactionFunctions
         .getTransaction(transactionId);
@@ -365,8 +366,6 @@ class Adaptive {
           'This transaction has not initiated a FIDO verification.');
     }
 
-    // TODO: Handle multiple allowCredentials
-    const credentialId = transaction.fido.allowCredentials[0].id;
     console.log(`[${Adaptive.name}:evaluateFIDO(context, transactionId, ` +
         `relyingPartyId, authenticatorData, userHandle, signature, ` +
         `clientDataJSON)]`, 'credentialId:', credentialId);
@@ -384,7 +383,7 @@ class Adaptive {
         `clientDataJSON)]`, 'verification:', verification);
 
     return this._validateAssertion(transactionId, context,
-        verification.assertion, transaction.userId);
+        verification.assertion, verification.userId);
   }
 
   /**
