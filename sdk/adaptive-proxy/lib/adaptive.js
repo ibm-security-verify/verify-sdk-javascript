@@ -366,6 +366,10 @@ class Adaptive {
           'This transaction has not initiated a FIDO verification.');
     }
 
+    if (credentialId === undefined) {
+      credentialId = transaction.fido.allowCredentials[0].id;
+    }
+
     console.log(`[${Adaptive.name}:evaluateFIDO(context, transactionId, ` +
         `relyingPartyId, authenticatorData, userHandle, signature, ` +
         `clientDataJSON)]`, 'credentialId:', credentialId);
