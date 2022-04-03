@@ -779,7 +779,7 @@ const client = new Privacy({
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line354">line 354</a>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line361">line 361</a>
         </li>
       </ul>
     </dd>
@@ -1018,7 +1018,7 @@ const client = new Privacy({
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line366">line 366</a>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line373">line 373</a>
         </li>
       </ul>
     </dd>
@@ -1174,6 +1174,37 @@ access type is not specified, it is set to a system default.</p>
           <p>The purpose ID representing the privacy
 purpose configured on Verify. If you are checking for the consent status
 of EULA, use the EULA identifier here.</p>
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>profileId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          <p>The Privacy profile ID configured on
+Verify. If provided, other fields are ignored and assessment is performed
+using this identifier.</p>
           
         </td>
       </tr>
@@ -1357,7 +1388,7 @@ and additional details</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line121">line 121</a>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line128">line 128</a>
         </li>
       </ul>
     </dd>
@@ -1401,6 +1432,10 @@ and additional details</p>
   {
     // default end user license agreement
     "purposeId": "defaultEULA",
+  },
+  {
+    // Privacy profile identifier
+    "profileId": "gdprprofile",
   }
 ])
 
@@ -1730,7 +1765,7 @@ and any consent metadata</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line205">line 205</a>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line212">line 212</a>
         </li>
       </ul>
     </dd>
@@ -1999,7 +2034,7 @@ filters consentsby the application id present in the authentication token</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line268">line 268</a>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line275">line 275</a>
         </li>
       </ul>
     </dd>
@@ -2204,7 +2239,7 @@ created or updated</p>
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line315">line 315</a>
+          <a href="privacy.js.html">privacy.js</a>, <a href="privacy.js.html#line322">line 322</a>
         </li>
       </ul>
     </dd>
