@@ -49,6 +49,9 @@ class DPCMService extends Service {
     * @param {Array} duaRequest The data items that require approval for use
     * @param {string} duaRequest.purposeId The purpose ID representing the
     * privacy purpose configured on Verify.
+    * @param {string} duaRequest.profileId The Privacy profile ID representing
+    * the privacy profile configured on Verify. If provided, other
+    * fields are ignored
     * @param {string} duaRequest.accessTypeId The access type ID representing
     * the available access types on Verify. This must be one of the access types
     * selected for the purpose.

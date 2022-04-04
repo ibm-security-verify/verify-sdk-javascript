@@ -164,6 +164,29 @@ describe('Privacy', () => {
       ]);
       assert.strictEqual(result.status, 'consent');
     });
+
+    it('should assess by profileId', async () => {
+      const client = new Privacy(
+          config, auth, context,
+      );
+      const result = await client.assess([
+        {
+          'profileId': 'marketingprofile',
+        },
+      ]);
+      // email (attributeId=3) is not consented but
+      //  mobile_number (attributeId=11) is already consented
+      for (let i = 0; i < result.assessment.length; i++) {
+        const item = result.assessment[i];
+        if (item.attributeId === '11') {
+          assert.strictEqual(item.result.length, 1);
+          assert.strictEqual(item.result[0].approved, true);
+        } else if (item.attributeId === '3') {
+          assert.strictEqual(item.result.length, 1);
+          assert.strictEqual(item.result[0].approved, false);
+        }
+      }
+    });
   });
 
   describe('#error', () => {

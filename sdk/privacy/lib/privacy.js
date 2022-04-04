@@ -78,6 +78,9 @@ class Privacy {
    * @param {string} items.purposeId The purpose ID representing the privacy
    * purpose configured on Verify. If you are checking for the consent status
    * of EULA, use the EULA identifier here.
+   * @param {string} items.profileId The Privacy profile ID configured on
+   * Verify. If provided, other fields are ignored and assessment is performed
+   * using this identifier.
    * @param {string} items.accessTypeId The access type ID representing the
    * available access types on Verify. This must be one of the access types
    * selected for the purpose.
@@ -104,6 +107,10 @@ class Privacy {
    *   {
    *     // default end user license agreement
    *     "purposeId": "defaultEULA",
+   *   },
+   *   {
+   *     // Privacy profile identifier
+   *     "profileId": "gdprprofile",
    *   }
    * ])
    *
