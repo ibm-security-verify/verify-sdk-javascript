@@ -604,8 +604,9 @@ class Adaptive {
       if (assessment.allowedFactors) {
         enrolledFactors = enrolledFactors.filter((enrollment) =>
           assessment.allowedFactors.includes(enrollment.type) ||
-          (assessment.allowedFactors.includes('signatures') &&
-          enrollment.type === 'signature'));
+          (enrollment.type === 'signature' &&
+           assessment.allowedFactors.includes('signatures_'
+             + enrollment.subType)));
       }
 
       console.log(`[${Adaptive.name}:_validateAssertion(transactionId, ` +
