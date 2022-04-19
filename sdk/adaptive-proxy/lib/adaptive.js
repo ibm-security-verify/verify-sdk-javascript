@@ -605,7 +605,7 @@ class Adaptive {
         enrolledFactors = enrolledFactors.filter((enrollment) =>
           assessment.allowedFactors.includes(enrollment.type) ||
           (enrollment.type === 'signature' &&
-           assessment.allowedFactors.includes("signatures_"
+           assessment.allowedFactors.includes('signatures_'
              + enrollment.subType)));
       }
 
