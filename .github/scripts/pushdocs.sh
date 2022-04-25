@@ -6,12 +6,14 @@ PAGES_BRANCH="master"
 DESTINATION_ROOT="${GITHUB_WORKSPACE}/docs"
 SOURCE_ROOT="${GITHUB_WORKSPACE}/monorepo"
 
-# generate privacy sdk docs
-MODULE=privacy
-DOC_TARGET_FOLDER="${DESTINATION_ROOT}/javascript/${MODULE}/docs"
-mkdir -p "${DOC_TARGET_FOLDER}"
-cd ${SOURCE_ROOT}/sdk/${MODULE} && npm i && npm run docs && cd -
-cp -R ${SOURCE_ROOT}/sdk/${MODULE}/docs/. ${DOC_TARGET_FOLDER}/
+# generate sdk docs and copy to respective locations
+for MODULE in `find $SOURCE_ROOT/sdk -d 1 -type d`
+do
+  cd ${MODULE} && npm i && npm run docs && cd -
+  DOC_TARGET_FOLDER="${DESTINATION_ROOT}/javascript/${MODULE##*/}/docs"
+  mkdir -p "${DOC_TARGET_FOLDER}"
+  cp -R ${MODULE}/docs/. ${DOC_TARGET_FOLDER}/
+done
 
 # configure and push to github docs repo
 cd ${SOURCE_ROOT}
