@@ -33,7 +33,7 @@ jobs:
       - name: Install npm
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '12'
 
       - name: Push docs
         run: ${{ github.workspace }}/monorepo/.github/scripts/pushdocs.sh
