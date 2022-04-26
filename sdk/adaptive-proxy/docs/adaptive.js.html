@@ -449,6 +449,10 @@ class Adaptive {
           'This transaction has not initiated a FIDO verification.');
     }
 
+    if (credentialId === undefined) {
+      credentialId = transaction.fido.allowCredentials[0].id;
+    }
+
     console.log(`[${Adaptive.name}:evaluateFIDO(context, transactionId, ` +
         `relyingPartyId, authenticatorData, userHandle, signature, ` +
         `clientDataJSON)]`, 'credentialId:', credentialId);
@@ -683,8 +687,9 @@ class Adaptive {
       if (assessment.allowedFactors) {
         enrolledFactors = enrolledFactors.filter((enrollment) =>
           assessment.allowedFactors.includes(enrollment.type) ||
-          (assessment.allowedFactors.includes('signatures') &amp;&amp;
-          enrollment.type === 'signature'));
+          (enrollment.type === 'signature' &amp;&amp;
+           assessment.allowedFactors.includes('signatures_'
+             + enrollment.subType)));
       }
 
       console.log(`[${Adaptive.name}:_validateAssertion(transactionId, ` +
