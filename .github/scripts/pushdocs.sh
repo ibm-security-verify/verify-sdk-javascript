@@ -7,7 +7,7 @@ DESTINATION_ROOT="${GITHUB_WORKSPACE}/docs"
 SOURCE_ROOT="${GITHUB_WORKSPACE}/monorepo"
 
 # generate sdk docs and copy to respective locations
-for MODULE in `find $SOURCE_ROOT/sdk -d 1 -type d`
+for MODULE in `ls $SOURCE_ROOT/sdk`
 do
   cd ${MODULE} && npm i && npm run docs && cd -
   DOC_TARGET_FOLDER="${DESTINATION_ROOT}/javascript/${MODULE##*/}/docs"
