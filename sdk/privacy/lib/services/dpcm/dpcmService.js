@@ -26,9 +26,17 @@ class DPCMService extends Service {
     * @param {string} context.ipAddress The IP address of the user agent.
     * If this library is used in a backend system, this IP should be obtained
     * from the request headers that contain the actual user agent IP address.
+    * @param {Object} headers Optional headers that can be sent.
     */
-  constructor(auth, baseURL, context) {
-    super(auth, baseURL, context);
+  constructor(auth, baseURL, context, headers = {}) {
+    super(
+        auth,
+        baseURL,
+        context,
+        headers['Content-Type'],
+        headers['Accept'],
+        headers['Accept-Language'],
+    );
   }
 
   /**

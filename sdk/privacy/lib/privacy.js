@@ -187,7 +187,9 @@ class Privacy {
    * @param {string} items.attributeValue The attribute value for the attribute.
    * This is typically used when the user has more than one value for the
    * attribute. This is optional.
-   *
+   * @param {Object} headers Optional headers that can be sent
+   * @param {string} headers.Accept-Language The locale of content to
+   * receive in the response.
    * @return {Promise<WrappedMetadata>} The status of the request
    * and any consent metadata
    *
@@ -209,10 +211,10 @@ class Privacy {
    *   // render the page based on the r.metadata
    * }
    */
-  async getConsentMetadata(items) {
+  async getConsentMetadata(items, headers = {}) {
     const methodName = `${Privacy.name}:getConsentMetadata(items)`;
     const service = new DPCMService(this._auth, this._config.tenantUrl,
-        this._context);
+        this._context, headers);
     try {
       // retrieve the list of purposes
       const purposes = new Set();
