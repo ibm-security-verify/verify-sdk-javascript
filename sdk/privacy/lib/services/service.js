@@ -33,12 +33,17 @@ class Service {
     * @param {string} [acceptHeader='json'] The type of content to receive
     * in the response. Sets the <code>Accept</code> header of the requests
     * appropriately.
+    * @param {string} [acceptLanguageHeader='en-US'] The locale of content to
+    * receive in the response. Sets the <code>Accept-Language</code> header of
+    * the requests appropriately. If not provided, server responds with it's
+    * default setting.
     */
   constructor(auth, baseURL, context, contentTypeHeader = 'json',
-      acceptHeader = 'json') {
+      acceptHeader = 'json', acceptLanguageHeader = '') {
     this._baseURL = baseURL;
     this._contentTypeHeader = contentTypeHeader;
     this._acceptHeader = acceptHeader;
+    this._acceptLanguageHeader = acceptLanguageHeader;
     this._context = context;
     this._context.subjectId = (this._context.subjectId &&
         this._context.subjectId != '') ? this._context.subjectId : null;
@@ -75,6 +80,8 @@ class Service {
   async get(path, params = {}) {
     const headers = {
       'Accept': `application/${this._acceptHeader}`,
+      'Accept-Language':
+        this._acceptLanguageHeader ? this._acceptLanguageHeader : null,
       'Authorization': this._authorizationHeader,
     };
 
@@ -98,6 +105,8 @@ class Service {
   async post(path, data = {}, params = {}) {
     const headers = {
       'Accept': `application/${this._acceptHeader}`,
+      'Accept-Language':
+        this._acceptLanguageHeader ? this._acceptLanguageHeader : null,
       'Content-Type': `application/${this._contentTypeHeader}`,
       'Authorization': this._authorizationHeader,
     };
@@ -131,6 +140,8 @@ class Service {
   async patch(path, data = {}, params = {}) {
     const headers = {
       'Accept': `application/${this._acceptHeader}`,
+      'Accept-Language':
+        this._acceptLanguageHeader ? this._acceptLanguageHeader : null,
       'Content-Type': `application/${this._contentTypeHeader}`,
       'Authorization': this._authorizationHeader,
     };

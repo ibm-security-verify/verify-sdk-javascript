@@ -75,10 +75,15 @@ describe('Privacy', () => {
         {
           'purposeId': '98b56762-398b-4116-94b5-125b5ca0d831',
         },
-      ]);
+      ], {'Accept-Language': 'fr'});
 
       assert.strictEqual(result.status, 'error',
           `Result status is not done: ${result.status}`);
+      assert.strictEqual(
+          result.error.messageDescription.startsWith('Le mappage de'),
+          true,
+          'Error message is not in desired locale',
+      );
     });
 
     it('deep test', async () => {
