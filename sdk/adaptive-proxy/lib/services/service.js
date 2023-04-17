@@ -97,13 +97,10 @@ class Service {
         'params:', securityUtils.maskObject(params));
     console.log(`[${Service.name}:get(path, params={})]`,
         'headers:', securityUtils.maskObject(headers));
-
-
-    console.log("use proxy: ",process.env.HTTP_PROXY ?? "false")
-  
-    if(process.env.PROXY_HOST && process.env.PROXY_PROTOCOL && process.env.PROXY_PORT ) {
+    
+    if(process.env.PROXY_HOST && process.env.PROXY_PORT) {
       this._config = { proxy: {
-          protocol: process.env.PROXY_PROTOCOL,
+          protocol: process.env.PROXY_SECURE ? "https" : "http",
           host: process.env.PROXY_HOST,
           port: process.env.PROXY_PORT
         }
@@ -145,12 +142,10 @@ class Service {
         'params:', securityUtils.maskObject(params));
     console.log(`[${Service.name}:post(path, data={}, params={})]`,
         'headers:', securityUtils.maskObject(headers));
-
-    console.log("use proxy: ",process.env.HTTP_PROXY ?? "false")
-    
-    if(process.env.PROXY_HOST && process.env.PROXY_PROTOCOL && process.env.PROXY_PORT ) {
+      
+    if(process.env.PROXY_HOST && process.env.PROXY_PORT ) {
       this._config = { proxy: {
-          protocol: process.env.PROXY_PROTOCOL,
+          protocol: process.env.PROXY_SECURE ? "https" : "http",
           host: process.env.PROXY_HOST,
           port: process.env.PROXY_PORT
         }
@@ -159,8 +154,6 @@ class Service {
 
     this._config.params = params
     this._config.headers = headers
-
-    console.log("Config: ", this._config);
 
     return await axios.post(this._baseURL + path, data, {...this._config});
   }

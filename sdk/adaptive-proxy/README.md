@@ -11,6 +11,17 @@ Use [npm](https://github.com/npm/cli) to install the Proxy SDK:
 ```bash
 npm install @ibm-verify/adaptive-proxy
 ```
+## HTTP Proxy Settings (optional)
+
+To use a HTTP proxy, you will need to set environment variables in a `.env` file. The `.env` file should contian the following
+parameters:
+
+| Parameter      | Type     | Description                                                                                                                                                    |
+| -------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PROXY_HOST` | `string` | The hostname or IP address of the proxy. |
+| `PROXY_SECURE` | `boolean` | A flag for using http or https proxy protocol.  Default is `false` (http).   |
+| `PROXY_PORT` | `integer` | The port the proxy is listening on. |
+
 
 ## Configuration Settings
 
