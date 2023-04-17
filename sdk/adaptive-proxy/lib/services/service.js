@@ -52,6 +52,7 @@ class Service {
     this._context = base64Utils.base64UrlEncodeObject(context);
     this._contentTypeHeader = contentTypeHeader;
     this._acceptHeader = acceptHeader;
+    this._config = {}
 
     if (auth.accessToken) {
       this._authorizationHeader = `Bearer ${auth.accessToken}`;
@@ -97,7 +98,22 @@ class Service {
     console.log(`[${Service.name}:get(path, params={})]`,
         'headers:', securityUtils.maskObject(headers));
 
-    return await axios.get(this._baseURL + path, {params, headers});
+
+    console.log("use proxy: ",process.env.HTTP_PROXY ?? "false")
+  
+    if(process.env.PROXY_HOST && process.env.PROXY_PROTOCOL && process.env.PROXY_PORT ) {
+      this._config = { proxy: {
+          protocol: process.env.PROXY_PROTOCOL,
+          host: process.env.PROXY_HOST,
+          port: process.env.PROXY_PORT
+        }
+      }
+    }
+
+    this._config.params = params
+    this._config.headers = headers
+    
+    return await axios.get(this._baseURL + path, {...this._config});
   }
 
   /**
@@ -130,7 +146,23 @@ class Service {
     console.log(`[${Service.name}:post(path, data={}, params={})]`,
         'headers:', securityUtils.maskObject(headers));
 
-    return await axios.post(this._baseURL + path, data, {params, headers});
+    console.log("use proxy: ",process.env.HTTP_PROXY ?? "false")
+    
+    if(process.env.PROXY_HOST && process.env.PROXY_PROTOCOL && process.env.PROXY_PORT ) {
+      this._config = { proxy: {
+          protocol: process.env.PROXY_PROTOCOL,
+          host: process.env.PROXY_HOST,
+          port: process.env.PROXY_PORT
+        }
+      }
+    }
+
+    this._config.params = params
+    this._config.headers = headers
+
+    console.log("Config: ", this._config);
+
+    return await axios.post(this._baseURL + path, data, {...this._config});
   }
 }
 
