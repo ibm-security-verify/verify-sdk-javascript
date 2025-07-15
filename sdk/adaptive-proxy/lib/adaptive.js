@@ -600,13 +600,18 @@ class Adaptive {
 
       // Filter the user's enrollment options based on the assessment's
       // `allowedFactors`, if available.
-      let enrolledFactors = enrollments.factors;
+      let enrolledFactors = enrollments.factors; // Filter the user's enrollment options based on the assessment's `allowedFactors.factors`;
       if (assessment.allowedFactors) {
-        enrolledFactors = enrolledFactors.filter((enrollment) =>
-          assessment.allowedFactors.includes(enrollment.type) ||
-          (enrollment.type === 'signature' &&
-           assessment.allowedFactors.includes('signatures_'
-             + enrollment.subType)));
+        enrolledFactors = enrolledFactors.filter((enrollment) => {
+          const normalizedType = enrollment.subType
+            ? `${enrollment.type}s_${enrollment.subType}`
+            : enrollment.type;
+
+          console.log(`[${Adaptive.name}:_validateAssertion(transactionId, context, assertion, userId)]`,
+            'Checking normalizedType:', normalizedType);
+          // You may want to update the filtering logic here as needed.
+          return assessment.allowedFactors.includes(normalizedType);
+        });
       }
 
       console.log(`[${Adaptive.name}:_validateAssertion(transactionId, ` +
@@ -1510,8 +1515,14 @@ class Adaptive {
 
     // Filter the user's enrollment options based on the assessment's
     // `allowedFactors`.
-    const enrolledFactors = enrollments.factors.filter((enrollment) =>
-      assessment.allowedFactors.includes(enrollment.type));
+    const enrolledFactors = enrollments.factors.filter((enrollment) => {
+      const normalizedType = enrollment.subType
+        ? `${enrollment.type}s_${enrollment.subType}`
+        : enrollment.type;
+
+      console.log(`[${Adaptive.name}:refresh(refreshToken, context)]`, 'Checking normalizedType:', normalizedType);
+      return assessment.allowedFactors.includes(normalizedType);
+    });
     console.log(`[${Adaptive.name}:refresh(refreshToken, context)]`,
         'enrolledFactors:', enrolledFactors);
 
