@@ -2,7 +2,7 @@
   "name": "@ibm-verify/adaptive-proxy",
   "version": "1.6.3",
   "description": "",
-  "main": "lib/index.js",
+  "main": "sdk/adaptive-proxy/lib/index.js",
   "scripts": {
     "test": "mocha",
     "clean": "rm -r node_modules package-lock.json",
