@@ -22,7 +22,7 @@
   "repository": {
     "directory": "sdk/adaptive-proxy",
     "type": "git",
-    "url": "https://github.com/ibm-security-verify/verify-sdk-javascript.git"
+    "url": "https://github.com/rbaronia/verify-sdk-javascript.git"
   },
   "license": "MIT",
   "dependencies": {
