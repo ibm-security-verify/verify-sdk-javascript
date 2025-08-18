@@ -4,6 +4,9 @@
 
 # IBM Security Verify Adaptive Browser SDK
 
+## Repository Moved
+This repository has been moved to the new URL: https://github.com/IBM-Verify/adaptive-browser-sdk. Please update your links and references accordingly. This location is no longer maintained or updated. For the latest information and updates, please visit the new repository location.
+
 The purpose of the Browser SDK is to enable a developer to initiate a collection process, and verify the collected data. The collection process consists of the SDK collection device information, which will be assigned to a session identifier, and evaluated at later points in time. This SDK is to be used in conjunction with the Proxy SDK, which will be responsible for evaluating the session identifier during authentication.
 
 ## Prerequisites
