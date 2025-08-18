@@ -1,5 +1,8 @@
 # IBM Security Verify Adaptive Proxy SDK for JavaScript
 
+## Repository Moved
+This repository has been moved to the new URL: https://github.com/IBM-Verify/adaptive-proxy-sdk-javascript. Please update your links and references accordingly. This location is no longer maintained or updated. For the latest information and updates, please visit the new repository location.
+
 The Proxy SDK for server-side JavaScript ([Node](https://nodejs.org)).
 The purpose of this library is to provide an interface for device
 authentication, authorization, and risk assessment using IBM Security Verify.
