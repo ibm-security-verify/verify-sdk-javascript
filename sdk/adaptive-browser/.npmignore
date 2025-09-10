@@ -1,8 +1,0 @@
-# folders
-node_modules/
-docs/
-demo/
-
-# files
-.jsdoc.json
-.eslintrc.json
